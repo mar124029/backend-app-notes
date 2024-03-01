@@ -7,6 +7,7 @@ const logger = require('./loggerMiddleware')
 // const http = require('http');
 app.use(cors())
 app.use(express.json())
+app.use(express.static('dist'))
 
 app.use(logger)
 
@@ -108,7 +109,7 @@ app.use((req,res)=>{
     res.status(404).json({message: 'Not found'})
 })
 
-const PORT = 3001
+const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {
     console.log(`Servidor corriendo en el puerto ${PORT}`)
